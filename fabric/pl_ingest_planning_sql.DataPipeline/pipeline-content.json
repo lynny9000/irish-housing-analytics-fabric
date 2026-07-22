@@ -1,0 +1,1231 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "datasetSettings": {
+              "type": "SqlServerTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "PlanningAuthority",
+                "database": "IrishHousingSource"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "5a2b94b7-c0a9-49aa-92cb-a3cff9c15b32"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "AzureBlobStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "Bronze/PlanningSQL/PlanningAuthority/load_date=@{formatDateTime(utcNow(),'yyyy-MM-dd')}",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "PlanningAuthority.parquet",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "PlanningAuthorityID",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "PlanningAuthorityID",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "PlanningAuthorityName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "100"
+                },
+                "sink": {
+                  "name": "PlanningAuthorityName",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_planning_authority_to_bronze",
+        "dependsOn": [
+          {
+            "activity": "lookup_previous_planning_watermark",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "lookup_current_planning_watermark",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "datasetSettings": {
+              "type": "SqlServerTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "ApplicationType",
+                "database": "IrishHousingSource"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "5a2b94b7-c0a9-49aa-92cb-a3cff9c15b32"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "AzureBlobStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "Bronze/PlanningSQL/ApplicationType/load_date=@{formatDateTime(utcNow(),'yyyy-MM-dd')}",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "ApplicationType.parquet",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "ApplicationTypeID",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "ApplicationTypeID",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationTypeName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "150"
+                },
+                "sink": {
+                  "name": "ApplicationTypeName",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_application_type_to_bronze",
+        "dependsOn": [
+          {
+            "activity": "copy_planning_authority_to_bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "datasetSettings": {
+              "type": "SqlServerTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "ApplicationStatus",
+                "database": "IrishHousingSource"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "5a2b94b7-c0a9-49aa-92cb-a3cff9c15b32"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "AzureBlobStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "Bronze/PlanningSQL/ApplicationStatus/load_date=@{formatDateTime(utcNow(),'yyyy-MM-dd')}",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "ApplicationStatus.parquet",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "ApplicationStatusID",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "ApplicationStatusID",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationStatusName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "400"
+                },
+                "sink": {
+                  "name": "ApplicationStatusName",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_application_status_to_bronze",
+        "dependsOn": [
+          {
+            "activity": "copy_application_type_to_bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "datasetSettings": {
+              "type": "SqlServerTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "DecisionType",
+                "database": "IrishHousingSource"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "5a2b94b7-c0a9-49aa-92cb-a3cff9c15b32"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "AzureBlobStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "Bronze/PlanningSQL/DecisionType/load_date=@{formatDateTime(utcNow(),'yyyy-MM-dd')}",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "DecisionType.parquet",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "DecisionTypeID",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "DecisionTypeID",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "DecisionTypeName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "400"
+                },
+                "sink": {
+                  "name": "DecisionTypeName",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_decision_type_to_bronze",
+        "dependsOn": [
+          {
+            "activity": "copy_application_status_to_bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "datasetSettings": {
+              "type": "SqlServerTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "LandUseType",
+                "database": "IrishHousingSource"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "5a2b94b7-c0a9-49aa-92cb-a3cff9c15b32"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "AzureBlobStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "Bronze/PlanningSQL/LandUseType/load_date=@{formatDateTime(utcNow(),'yyyy-MM-dd')}",
+                    "type": "Expression"
+                  },
+                  "fileName": {
+                    "value": "LandUseType.parquet",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "LandUseTypeID",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "LandUseTypeID",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "LandUseTypeName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "100"
+                },
+                "sink": {
+                  "name": "LandUseTypeName",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_land_use_type_to_bronze",
+        "dependsOn": [
+          {
+            "activity": "copy_decision_type_to_bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": "SELECT\n    LastWatermarkValue\nFROM dbo.IngestionWatermark\nWHERE DatasetName = 'Irish Planning Applications'\n  AND SourceTable = 'dbo.PlanningApplication'\n  AND IsActive = 1;",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "linkedService": {
+              "name": "wh-irish-housing-dev",
+              "properties": {
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                  "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "lookup_previous_planning_watermark",
+        "dependsOn": []
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "sqlReaderQuery": "SELECT\n    MAX(RecordLastUpdatedAt) AS CurrentWatermark\nFROM dbo.PlanningApplication;",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "SqlServerTable",
+            "typeProperties": {
+              "database": "IrishHousingSource"
+            },
+            "schema": [],
+            "externalReferences": {
+              "connection": "5a2b94b7-c0a9-49aa-92cb-a3cff9c15b32"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "lookup_current_planning_watermark",
+        "dependsOn": []
+      },
+      {
+        "type": "IfCondition",
+        "typeProperties": {
+          "expression": {
+            "value": "@greater(\n    ticks(activity('lookup_current_planning_watermark').output.firstRow.CurrentWatermark),\n    ticks(activity('lookup_previous_planning_watermark').output.firstRow.LastWatermarkValue)\n)",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "SqlServerSource",
+                  "sqlReaderQuery": "@concat(\n    'SELECT * FROM dbo.PlanningApplication ',\n    'WHERE RecordLastUpdatedAt > CONVERT(datetime2(6), ''',\n    activity('lookup_previous_planning_watermark').output.firstRow.LastWatermarkValue,\n    ''', 126) ',\n    'AND RecordLastUpdatedAt <= CONVERT(datetime2(6), ''',\n    activity('lookup_current_planning_watermark').output.firstRow.CurrentWatermark,\n    ''', 126)'\n)",
+                  "partitionOption": "None",
+                  "queryTimeout": "02:00:00",
+                  "datasetSettings": {
+                    "type": "SqlServerTable",
+                    "typeProperties": {
+                      "schema": "dbo",
+                      "table": "PlanningApplication",
+                      "database": "IrishHousingSource"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "5a2b94b7-c0a9-49aa-92cb-a3cff9c15b32"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "ParquetSink",
+                  "formatSettings": {
+                    "type": "ParquetWriteSettings",
+                    "enableVertiParquet": true
+                  },
+                  "storeSettings": {
+                    "type": "AzureBlobStorageWriteSettings"
+                  },
+                  "datasetSettings": {
+                    "type": "Parquet",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": {
+                          "value": "Bronze/PlanningSQL/PlanningApplication/load_date=@{formatDateTime(utcNow(),'yyyy-MM-dd')}",
+                          "type": "Expression"
+                        },
+                        "fileName": {
+                          "value": "PlanningApplication.parquet",
+                          "type": "Expression"
+                        }
+                      },
+                      "compressionCodec": "snappy"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "lhirishhousingdev",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "mappings": [
+                    {
+                      "source": {
+                        "name": "SourceObjectID",
+                        "type": "Int32",
+                        "physicalType": "int"
+                      },
+                      "sink": {
+                        "name": "SourceObjectID",
+                        "type": "Int32",
+                        "physicalType": "INT_32"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "ApplicationNumber",
+                        "type": "String",
+                        "physicalType": "nvarchar",
+                        "length": "50"
+                      },
+                      "sink": {
+                        "name": "ApplicationNumber",
+                        "type": "String",
+                        "physicalType": "STRING"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "PlanningAuthorityID",
+                        "type": "Int32",
+                        "physicalType": "int"
+                      },
+                      "sink": {
+                        "name": "PlanningAuthorityID",
+                        "type": "Int32",
+                        "physicalType": "INT_32"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "ApplicationTypeID",
+                        "type": "Int32",
+                        "physicalType": "int"
+                      },
+                      "sink": {
+                        "name": "ApplicationTypeID",
+                        "type": "Int32",
+                        "physicalType": "INT_32"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "ApplicationStatusID",
+                        "type": "Int32",
+                        "physicalType": "int"
+                      },
+                      "sink": {
+                        "name": "ApplicationStatusID",
+                        "type": "Int32",
+                        "physicalType": "INT_32"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "DecisionTypeID",
+                        "type": "Int32",
+                        "physicalType": "int"
+                      },
+                      "sink": {
+                        "name": "DecisionTypeID",
+                        "type": "Int32",
+                        "physicalType": "INT_32"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "LandUseTypeID",
+                        "type": "Int32",
+                        "physicalType": "int"
+                      },
+                      "sink": {
+                        "name": "LandUseTypeID",
+                        "type": "Int32",
+                        "physicalType": "INT_32"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "DevelopmentDescription",
+                        "type": "String",
+                        "physicalType": "nvarchar",
+                        "length": "MAX"
+                      },
+                      "sink": {
+                        "name": "DevelopmentDescription",
+                        "type": "String",
+                        "physicalType": "STRING"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "DevelopmentAddress",
+                        "type": "String",
+                        "physicalType": "nvarchar",
+                        "length": "2000"
+                      },
+                      "sink": {
+                        "name": "DevelopmentAddress",
+                        "type": "String",
+                        "physicalType": "STRING"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "DevelopmentPostcode",
+                        "type": "String",
+                        "physicalType": "nvarchar",
+                        "length": "50"
+                      },
+                      "sink": {
+                        "name": "DevelopmentPostcode",
+                        "type": "String",
+                        "physicalType": "STRING"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "ITMEasting",
+                        "type": "Double",
+                        "physicalType": "float"
+                      },
+                      "sink": {
+                        "name": "ITMEasting",
+                        "type": "Double",
+                        "physicalType": "DOUBLE"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "ITMNorthing",
+                        "type": "Double",
+                        "physicalType": "float"
+                      },
+                      "sink": {
+                        "name": "ITMNorthing",
+                        "type": "Double",
+                        "physicalType": "DOUBLE"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "Latitude",
+                        "type": "Decimal",
+                        "physicalType": "decimal",
+                        "scale": 6,
+                        "precision": 9
+                      },
+                      "sink": {
+                        "name": "Latitude",
+                        "type": "Decimal",
+                        "physicalType": "DECIMAL"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "Longitude",
+                        "type": "Decimal",
+                        "physicalType": "decimal",
+                        "scale": 6,
+                        "precision": 9
+                      },
+                      "sink": {
+                        "name": "Longitude",
+                        "type": "Decimal",
+                        "physicalType": "DECIMAL"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "AreaOfSite",
+                        "type": "Decimal",
+                        "physicalType": "decimal",
+                        "scale": 4,
+                        "precision": 18
+                      },
+                      "sink": {
+                        "name": "AreaOfSite",
+                        "type": "Decimal",
+                        "physicalType": "DECIMAL"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "NumResidentialUnits",
+                        "type": "Int32",
+                        "physicalType": "int"
+                      },
+                      "sink": {
+                        "name": "NumResidentialUnits",
+                        "type": "Int32",
+                        "physicalType": "INT_32"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "OneOffHouse",
+                        "type": "Boolean",
+                        "physicalType": "bit"
+                      },
+                      "sink": {
+                        "name": "OneOffHouse",
+                        "type": "Boolean",
+                        "physicalType": "BOOLEAN"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "FloorArea",
+                        "type": "Decimal",
+                        "physicalType": "decimal",
+                        "scale": 2,
+                        "precision": 18
+                      },
+                      "sink": {
+                        "name": "FloorArea",
+                        "type": "Decimal",
+                        "physicalType": "DECIMAL"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "ReceivedDate",
+                        "type": "DateTime",
+                        "physicalType": "datetime2",
+                        "precision": 0
+                      },
+                      "sink": {
+                        "name": "ReceivedDate",
+                        "type": "DateTime",
+                        "physicalType": "INT96"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "DecisionDate",
+                        "type": "DateTime",
+                        "physicalType": "datetime2",
+                        "precision": 0
+                      },
+                      "sink": {
+                        "name": "DecisionDate",
+                        "type": "DateTime",
+                        "physicalType": "INT96"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "GrantDate",
+                        "type": "DateTime",
+                        "physicalType": "datetime2",
+                        "precision": 0
+                      },
+                      "sink": {
+                        "name": "GrantDate",
+                        "type": "DateTime",
+                        "physicalType": "INT96"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "ExpiryDate",
+                        "type": "DateTime",
+                        "physicalType": "datetime2",
+                        "precision": 0
+                      },
+                      "sink": {
+                        "name": "ExpiryDate",
+                        "type": "DateTime",
+                        "physicalType": "INT96"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "LinkAppDetails",
+                        "type": "String",
+                        "physicalType": "nvarchar",
+                        "length": "500"
+                      },
+                      "sink": {
+                        "name": "LinkAppDetails",
+                        "type": "String",
+                        "physicalType": "STRING"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "SourceETLDate",
+                        "type": "DateTime",
+                        "physicalType": "datetime2",
+                        "precision": 0
+                      },
+                      "sink": {
+                        "name": "SourceETLDate",
+                        "type": "DateTime",
+                        "physicalType": "INT96"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "InsertedAt",
+                        "type": "DateTime",
+                        "physicalType": "datetime2",
+                        "precision": 6
+                      },
+                      "sink": {
+                        "name": "InsertedAt",
+                        "type": "DateTime",
+                        "physicalType": "INT96"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "RecordLastUpdatedAt",
+                        "type": "DateTime",
+                        "physicalType": "datetime2",
+                        "precision": 6
+                      },
+                      "sink": {
+                        "name": "RecordLastUpdatedAt",
+                        "type": "DateTime",
+                        "physicalType": "INT96"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "RecordVersion",
+                        "type": "Byte[]",
+                        "physicalType": "timestamp"
+                      },
+                      "sink": {
+                        "name": "RecordVersion",
+                        "type": "Byte[]",
+                        "physicalType": "BYTE_ARRAY"
+                      }
+                    }
+                  ],
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "copy_planning_application_to_bronze_copy1",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "47909039-e090-90ea-4593-bd54e98da8d4",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "load_date": {
+                    "value": {
+                      "value": "@formatDateTime(utcNow(),'yyyy-MM-dd')",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "run_nb_planning_bronze_to_silver_copy1",
+              "dependsOn": [
+                {
+                  "activity": "copy_planning_application_to_bronze_copy1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "eff17f96-3556-91d3-4f3e-3e9c42d8beb0",
+                "workspaceId": "00000000-0000-0000-0000-000000000000"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "run_nb_planning_silver_to_gold_copy1",
+              "dependsOn": [
+                {
+                  "activity": "run_nb_planning_bronze_to_silver_copy1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "dd7605be-5e96-b46b-4441-0cc558066ad6",
+                "workspaceId": "00000000-0000-0000-0000-000000000000"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "run_nb_planning_gold_to_warehouse_copy1",
+              "dependsOn": [
+                {
+                  "activity": "run_nb_planning_silver_to_gold_copy1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Script",
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "text": {
+                      "value": "@concat(\n    'UPDATE dbo.IngestionWatermark ',\n    'SET LastWatermarkValue = CONVERT(datetime2(6), ''',\n    activity('lookup_current_planning_watermark').output.firstRow.CurrentWatermark,\n    ''', 126), ',\n    'UpdatedAt = SYSUTCDATETIME() ',\n    'WHERE DatasetName = ''Irish Planning Applications'' ',\n    'AND SourceTable = ''dbo.PlanningApplication'' ',\n    'AND IsActive = 1;'\n)",
+                      "type": "Expression"
+                    },
+                    "type": "NonQuery"
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              },
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "update_planning_watermark_copy1",
+              "dependsOn": [
+                {
+                  "activity": "run_nb_planning_gold_to_warehouse_copy1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ],
+          "ifFalseActivities": []
+        },
+        "name": "if_planning_changes_found",
+        "dependsOn": [
+          {
+            "activity": "copy_land_use_type_to_bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

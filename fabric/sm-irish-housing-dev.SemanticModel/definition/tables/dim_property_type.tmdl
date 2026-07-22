@@ -1,0 +1,38 @@
+table dim_property_type
+	lineageTag: 5fa6d041-215c-4d56-a2f3-d1cd88c9e0ae
+	sourceLineageTag: [dbo].[dim_property_type]
+
+	column PropertyTypeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 04bfe7d3-a9d4-4fba-ae35-34c01c3562e7
+		sourceLineageTag: PropertyTypeKey
+		summarizeBy: none
+		sourceColumn: PropertyTypeKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PropertyType
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(100)
+		lineageTag: 2c6d84a7-8f8a-40d6-bdc2-7228cb20ec83
+		sourceLineageTag: PropertyType
+		summarizeBy: none
+		sourceColumn: PropertyType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_property_type = entity
+		mode: directLake
+		source
+			entityName: dim_property_type
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

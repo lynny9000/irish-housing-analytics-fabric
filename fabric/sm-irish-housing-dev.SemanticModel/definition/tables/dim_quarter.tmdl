@@ -1,0 +1,67 @@
+table dim_quarter
+	lineageTag: bf407044-2338-4bdd-bf76-0ca90bf2948a
+	sourceLineageTag: [dbo].[dim_quarter]
+
+	column QuarterKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 07446327-bdb8-4c8d-85ca-9316c374064d
+		sourceLineageTag: QuarterKey
+		summarizeBy: none
+		sourceColumn: QuarterKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		sourceProviderType: varchar(10)
+		lineageTag: cf0a4a8e-f966-4917-ba85-35736c13adfc
+		sourceLineageTag: Quarter
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterStartDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 86e78ccf-f4b9-4ed7-b0a0-6acea3930cb3
+		sourceLineageTag: QuarterStartDate
+		summarizeBy: none
+		sourceColumn: QuarterStartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 425153dc-1c91-4476-b873-cb78ba10be5e
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNumber
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: be1325b0-413e-4d28-b1fa-1e857bdffd82
+		sourceLineageTag: QuarterNumber
+		summarizeBy: none
+		sourceColumn: QuarterNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_quarter = entity
+		mode: directLake
+		source
+			entityName: dim_quarter
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

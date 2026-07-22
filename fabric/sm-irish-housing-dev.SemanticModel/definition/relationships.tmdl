@@ -1,0 +1,48 @@
+relationship f17664a7-dbff-0bb8-04b9-5bf2cae0f4da
+	fromColumn: fact_property_sales.CountyKey
+	toColumn: dim_county.CountyKey
+
+relationship fd4fbf19-0841-0741-e912-364b5e2c8b2d
+	fromColumn: fact_property_sales.DateKey
+	toColumn: dim_date.DateKey
+
+relationship 4031f798-ce62-0980-3058-9a65a451fbce
+	fromColumn: fact_property_sales.PropertyTypeKey
+	toColumn: dim_property_type.PropertyTypeKey
+
+relationship bb110199-5f31-f633-12f8-514a84cda351
+	fromColumn: fact_property_sales.SaleTypeKey
+	toColumn: dim_sale_type.SaleTypeKey
+
+relationship 4e88500c-4d0c-a312-77bd-4a99a9574fa0
+	fromColumn: fact_housing_vacancy.CountyKey
+	toColumn: dim_county.CountyKey
+
+relationship 3f3096a6-113a-00c3-2607-660c7f0aeb09
+	fromColumn: fact_housing_vacancy.QuarterKey
+	toColumn: dim_quarter.QuarterKey
+
+relationship e5406c34-61b3-21fb-ad80-c3f2c04e217f
+	fromColumn: fact_planning_applications.PlanningAuthorityKey
+	toColumn: dim_planning_authority.PlanningAuthorityKey
+
+relationship 3ba9dc96-ce99-6b3e-569d-1491a1ec571c
+	fromColumn: fact_planning_applications.ApplicationTypeKey
+	toColumn: dim_application_type.ApplicationTypeKey
+
+relationship 02070a3a-73be-b5ae-2e2d-0e797f82adc1
+	fromColumn: fact_planning_applications.ApplicationStatusKey
+	toColumn: dim_application_status.ApplicationStatusKey
+
+relationship 1fc57320-c786-04f8-52ad-98f46b9e1332
+	fromColumn: fact_planning_applications.DecisionTypeKey
+	toColumn: dim_decision_type.DecisionTypeKey
+
+relationship 5163e5d4-511e-230d-d7a1-3ea4fe58e44f
+	fromColumn: fact_planning_applications.LandUseTypeKey
+	toColumn: dim_land_use_type.LandUseTypeKey
+
+relationship cf6ccba4-aff0-00c2-0872-ef14366ef1e2
+	fromColumn: fact_planning_applications.DateKey
+	toColumn: dim_date.DateKey
+

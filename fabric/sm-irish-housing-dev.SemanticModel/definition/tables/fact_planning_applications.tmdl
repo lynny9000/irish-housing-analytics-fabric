@@ -1,0 +1,344 @@
+table fact_planning_applications
+	lineageTag: 6ed4e712-e1e7-49ad-84a2-b26fac62743e
+	sourceLineageTag: [dbo].[fact_planning_applications]
+
+	column PlanningApplicationKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 587ecc76-64dd-4491-8ed5-0a22f9b65bcf
+		sourceLineageTag: PlanningApplicationKey
+		summarizeBy: count
+		sourceColumn: PlanningApplicationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApplicationNumber
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: e140367e-ec54-4410-b56c-058b41e6e93e
+		sourceLineageTag: ApplicationNumber
+		summarizeBy: none
+		sourceColumn: ApplicationNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanningAuthorityKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3ff8db5e-e3ec-45a0-88c9-c4184f213808
+		sourceLineageTag: PlanningAuthorityKey
+		summarizeBy: none
+		sourceColumn: PlanningAuthorityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApplicationTypeKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fc5d8707-b134-4514-aeb4-8c791766f4ac
+		sourceLineageTag: ApplicationTypeKey
+		summarizeBy: none
+		sourceColumn: ApplicationTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApplicationStatusKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0d8725f2-7268-422e-a2e6-7d0615f9e86b
+		sourceLineageTag: ApplicationStatusKey
+		summarizeBy: none
+		sourceColumn: ApplicationStatusKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DecisionTypeKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6fad3ff4-242a-47a7-8768-e0aa58b35494
+		sourceLineageTag: DecisionTypeKey
+		summarizeBy: none
+		sourceColumn: DecisionTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LandUseTypeKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 65b1dca6-6ef2-4ec4-af2d-7b473ae78bfb
+		sourceLineageTag: LandUseTypeKey
+		summarizeBy: none
+		sourceColumn: LandUseTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 829009ea-74dc-4d8e-85f1-0e4c8ccc270f
+		sourceLineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReceivedDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 05b6f4b3-6f42-4281-9cd6-1bdb3279e146
+		sourceLineageTag: ReceivedDate
+		summarizeBy: none
+		sourceColumn: ReceivedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DecisionDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 5df93c3e-c597-4c6b-a1ad-98640c261dc0
+		sourceLineageTag: DecisionDate
+		summarizeBy: none
+		sourceColumn: DecisionDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrantDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 1fb069b4-327f-482b-b859-58053e7bf4d4
+		sourceLineageTag: GrantDate
+		summarizeBy: none
+		sourceColumn: GrantDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExpiryDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 82b2976e-7c37-47b5-b5c5-09d1aeb35eb5
+		sourceLineageTag: ExpiryDate
+		summarizeBy: none
+		sourceColumn: ExpiryDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApplicationCount
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e008b773-74de-4419-bb82-9b41ebc754bd
+		sourceLineageTag: ApplicationCount
+		summarizeBy: sum
+		sourceColumn: ApplicationCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column DecisionRecorded
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 13070cce-d316-47e8-885d-658e6accf86b
+		sourceLineageTag: DecisionRecorded
+		summarizeBy: sum
+		sourceColumn: DecisionRecorded
+
+		annotation SummarizationSetBy = Automatic
+
+	column OneOffHouseFlag
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8498f18b-4ae9-49d1-9768-0a6ce4b02e24
+		sourceLineageTag: OneOffHouseFlag
+		summarizeBy: sum
+		sourceColumn: OneOffHouseFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumResidentialUnits
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 682d46a5-8d2e-4a78-aca5-36d5a44b9854
+		sourceLineageTag: NumResidentialUnits
+		summarizeBy: sum
+		sourceColumn: NumResidentialUnits
+
+		annotation SummarizationSetBy = Automatic
+
+	column AreaOfSite
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(18, 4)
+		lineageTag: 971c6247-9520-48de-a054-0c1c898d2976
+		sourceLineageTag: AreaOfSite
+		summarizeBy: sum
+		sourceColumn: AreaOfSite
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column FloorArea
+		dataType: double
+		sourceProviderType: decimal(18, 2)
+		lineageTag: 23977fb2-8315-4ef9-bfe6-22f6a0f5c1bd
+		sourceLineageTag: FloorArea
+		summarizeBy: sum
+		sourceColumn: FloorArea
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Latitude
+		dataType: double
+		sourceProviderType: decimal(9, 6)
+		lineageTag: 7b26ba49-65df-4d59-8d73-e1635d746533
+		sourceLineageTag: Latitude
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		changedProperty = DataCategory
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		sourceProviderType: decimal(9, 6)
+		lineageTag: 68fd3111-8bc7-40c0-8a21-ac41ed7b7e1d
+		sourceLineageTag: Longitude
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		changedProperty = DataCategory
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ITMEasting
+		dataType: double
+		sourceProviderType: float
+		lineageTag: c4c86b73-5b90-481c-94bf-e7df96624c38
+		sourceLineageTag: ITMEasting
+		summarizeBy: sum
+		sourceColumn: ITMEasting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ITMNorthing
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 74782079-4951-4e7e-a4b1-32e07f5f9861
+		sourceLineageTag: ITMNorthing
+		summarizeBy: sum
+		sourceColumn: ITMNorthing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DevelopmentDescription
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 78642b7e-ec97-4faa-b890-a6e521a9618c
+		sourceLineageTag: DevelopmentDescription
+		summarizeBy: none
+		sourceColumn: DevelopmentDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column DevelopmentAddress
+		dataType: string
+		sourceProviderType: varchar(2000)
+		lineageTag: 2e4baaf1-5e50-455a-8f83-153f5b6b88b8
+		sourceLineageTag: DevelopmentAddress
+		summarizeBy: none
+		sourceColumn: DevelopmentAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column DevelopmentPostcode
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 4e8661f6-1333-4fbd-aebb-d47c3e47252b
+		sourceLineageTag: DevelopmentPostcode
+		summarizeBy: none
+		sourceColumn: DevelopmentPostcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApplicationDetailsURL
+		dataType: string
+		sourceProviderType: varchar(2000)
+		lineageTag: 3029e0c4-5c8e-4a7f-9e33-fc2d825a4207
+		sourceLineageTag: ApplicationDetailsURL
+		summarizeBy: none
+		sourceColumn: ApplicationDetailsURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceETLDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: d57ebfe9-f43f-4c74-87b0-5b323da7f66d
+		sourceLineageTag: SourceETLDate
+		summarizeBy: none
+		sourceColumn: SourceETLDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 6284038e-025b-4877-8d38-6d1b56c1226d
+		sourceLineageTag: LoadDate
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column GoldLoadTimestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 88bb2498-c81c-4a4d-815f-a97e19e528bb
+		sourceLineageTag: GoldLoadTimestamp
+		summarizeBy: none
+		sourceColumn: GoldLoadTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_planning_applications = entity
+		mode: directLake
+		source
+			entityName: fact_planning_applications
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

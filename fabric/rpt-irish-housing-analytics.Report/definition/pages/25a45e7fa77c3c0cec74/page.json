@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "25a45e7fa77c3c0cec74",
+  "displayName": "Housing Vacancy",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "2e5d25bb0f656472f484",
+      "target": "0efe98191f034548f379",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2e5d25bb0f656472f484",
+      "target": "9099ad22ec36244feac0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0efe98191f034548f379",
+      "target": "9099ad22ec36244feac0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0efe98191f034548f379",
+      "target": "2e5d25bb0f656472f484",
+      "type": "NoFilter"
+    }
+  ]
+}

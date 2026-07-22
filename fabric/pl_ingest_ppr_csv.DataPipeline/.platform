@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "pl_ingest_ppr_csv"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "26fc5ae9-eaf3-8da4-46ed-6e8a299ad1e3"
+  }
+}

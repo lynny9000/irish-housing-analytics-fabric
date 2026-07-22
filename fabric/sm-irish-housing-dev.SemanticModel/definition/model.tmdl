@@ -1,0 +1,31 @@
+model Model
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DatabaseQuery"]
+
+annotation PBI_ProTooling = ["WebModelingEdit"]
+
+ref table dim_date
+ref table dim_county
+ref table dim_property_type
+ref table dim_sale_type
+ref table fact_property_sales
+ref table measures_table
+ref table PipelineRunLog
+ref table dim_quarter
+ref table fact_housing_vacancy
+ref table dim_planning_authority
+ref table dim_application_type
+ref table dim_application_status
+ref table dim_decision_type
+ref table dim_land_use_type
+ref table fact_planning_applications
+

@@ -1,0 +1,328 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_dim_quarter"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.dim_quarter;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "dim_quarter"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "QuarterKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "QuarterKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "Quarter",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "Quarter",
+                  "physicalType": "varchar",
+                  "length": "10"
+                }
+              },
+              {
+                "source": {
+                  "name": "QuarterStartDate",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "QuarterStartDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "Year",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "Year",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "QuarterNumber",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "QuarterNumber",
+                  "physicalType": "int"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_dim_quarter",
+        "dependsOn": []
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_fact_housing_vacancy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.fact_housing_vacancy;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "fact_housing_vacancy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "HousingVacancyKey",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "HousingVacancyKey",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "QuarterKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "QuarterKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "CountyKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "CountyKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "VacantDwellings",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "VacantDwellings",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "DwellingStock",
+                  "type": "Int64",
+                  "physicalType": "long"
+                },
+                "sink": {
+                  "name": "DwellingStock",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "VacancyRate",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "VacancyRate",
+                  "physicalType": "decimal",
+                  "scale": 1,
+                  "precision": 5
+                }
+              },
+              {
+                "source": {
+                  "name": "SourceUpdatedTimestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "SourceUpdatedTimestamp",
+                  "physicalType": "datetime2",
+                  "precision": 6
+                }
+              },
+              {
+                "source": {
+                  "name": "LoadDate",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "LoadDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "LoadTimestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "LoadTimestamp",
+                  "physicalType": "datetime2",
+                  "precision": 6
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_fact_housing_vacancy",
+        "dependsOn": [
+          {
+            "activity": "copy_dim_quarter",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

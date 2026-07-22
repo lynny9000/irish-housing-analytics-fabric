@@ -1,0 +1,132 @@
+// Property Price Register Measures
+
+Total Sales =
+SUM(fact_property_sales[SalePrice])
+
+Sales Count =
+COUNTROWS(fact_property_sales)
+
+Average Sale Price =
+AVERAGE(fact_property_sales[SalePrice])
+
+Median Sale Price =
+MEDIAN(fact_property_sales[SalePrice])
+
+Highest Sale Price =
+MAX(fact_property_sales[SalePrice])
+
+Lowest Sale Price =
+MIN(fact_property_sales[SalePrice])
+
+Data Last Updated =
+MAX(fact_property_sales[LoadTimestamp])
+
+
+// CSO Housing Vacancy Measures
+
+Total Vacant Dwellings =
+SUM(fact_housing_vacancy[VacantDwellings])
+
+Total Dwelling Stock =
+SUM(fact_housing_vacancy[DwellingStock])
+
+Vacancy Rate =
+DIVIDE(
+    [Total Vacant Dwellings],
+    [Total Dwelling Stock]
+)
+
+
+// Irish Planning Application Measures
+
+Total Planning Applications =
+SUM(fact_planning_applications[ApplicationCount])
+
+Granted Planning Applications =
+CALCULATE(
+    [Total Planning Applications],
+    dim_decision_type[DecisionOutcome] = "Granted"
+)
+
+Refused Planning Applications =
+CALCULATE(
+    [Total Planning Applications],
+    dim_decision_type[DecisionOutcome] = "Refused"
+)
+
+Planning Grant Rate =
+DIVIDE(
+    [Granted Planning Applications],
+    [Granted Planning Applications]
+        + [Refused Planning Applications]
+)
+
+One-Off House Applications =
+CALCULATE(
+    [Total Planning Applications],
+    fact_planning_applications[OneOffHouseFlag] = 1
+)
+
+Total Residential Units =
+SUM(fact_planning_applications[NumResidentialUnits])
+
+Planning Data Last Updated =
+MAX(fact_planning_applications[LoadDate])
+
+
+// Pipeline Operational Monitoring Measures
+
+Total Pipeline Runs =
+DISTINCTCOUNT(PipelineRunLog[ParentRunID])
+
+Successful Child Executions =
+CALCULATE(
+    COUNTROWS(PipelineRunLog),
+    PipelineRunLog[RunStatus] = "Succeeded"
+)
+
+Failed Child Executions =
+CALCULATE(
+    COUNTROWS(PipelineRunLog),
+    PipelineRunLog[RunStatus] = "Failed"
+)
+
+Latest Run Duration Minutes =
+VAR LatestParentRunID =
+    MAXX(
+        TOPN(
+            1,
+            FILTER(
+                ALL(PipelineRunLog),
+                NOT ISBLANK(PipelineRunLog[StartTime])
+            ),
+            PipelineRunLog[StartTime],
+            DESC
+        ),
+        PipelineRunLog[ParentRunID]
+    )
+VAR LatestRunStart =
+    CALCULATE(
+        MIN(PipelineRunLog[StartTime]),
+        FILTER(
+            ALL(PipelineRunLog),
+            PipelineRunLog[ParentRunID] = LatestParentRunID
+        )
+    )
+VAR LatestRunEnd =
+    CALCULATE(
+        MAX(PipelineRunLog[EndTime]),
+        FILTER(
+            ALL(PipelineRunLog),
+            PipelineRunLog[ParentRunID] = LatestParentRunID
+        )
+    )
+RETURN
+    DIVIDE(
+        DATEDIFF(
+            LatestRunStart,
+            LatestRunEnd,
+            SECOND
+        ),
+        60
+    )

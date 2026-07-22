@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "sm-irish-housing-dev"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "abc0fa24-b66c-9242-4c72-91a80397f88e"
+  }
+}

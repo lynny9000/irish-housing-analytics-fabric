@@ -1,0 +1,287 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": "SELECT\n    PipelineConfigID,\n    DatasetName,\n    ChildPipelineName,\n    ChildPipelineID,\n    ExecutionOrder,\n    IsActive\nFROM dbo.PipelineConfig\nWHERE IsActive = 1\nORDER BY ExecutionOrder;",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "DataWarehouseTable",
+            "typeProperties": {
+              "schema": "dbo",
+              "table": "PipelineConfig"
+            },
+            "schema": [],
+            "linkedService": {
+              "name": "wh-irish-housing-dev",
+              "properties": {
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                  "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "lookup_active_pipelines",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('lookup_active_pipelines').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "InvokePipeline",
+              "typeProperties": {
+                "parameters": {},
+                "waitOnCompletion": true,
+                "workspaceId": "e0868319-d72d-49ff-83b5-426523564ec8",
+                "pipelineId": {
+                  "value": "@item().ChildPipelineID",
+                  "type": "Expression"
+                },
+                "operationType": "InvokeFabricPipeline"
+              },
+              "externalReferences": {
+                "connection": "70f44f75-e7b8-494b-9d84-ab9f2354fb6f"
+              },
+              "policy": {
+                "timeout": "0.01:00:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 60,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "invoke_child_pipeline",
+              "dependsOn": [
+                {
+                  "activity": "log_pipeline_start",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Script",
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "text": {
+                      "value": "@concat(\n'INSERT INTO dbo.PipelineRunLog\n(LogID, ParentRunID, PipelineConfigID, DatasetName, ChildPipelineName, ExecutionOrder, RunStatus, StartTime, EndTime, DurationSeconds, LoadDate, ErrorMessage)\nVALUES (''',\nguid(),\n''',''',\npipeline().RunId,\n''',',\nstring(item().PipelineConfigID),\n',''',\nitem().DatasetName,\n''',''',\nitem().ChildPipelineName,\n''',',\nstring(item().ExecutionOrder),\n',''Running'',SYSUTCDATETIME(),NULL,NULL,CAST(SYSUTCDATETIME() AS DATE),NULL);'\n)",
+                      "type": "Expression"
+                    },
+                    "type": "NonQuery"
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              },
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "log_pipeline_start",
+              "dependsOn": []
+            },
+            {
+              "type": "Script",
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "text": {
+                      "value": "@concat(\n'UPDATE dbo.PipelineRunLog\nSET RunStatus = ''Succeeded'',\n    EndTime = SYSUTCDATETIME(),\n    DurationSeconds = DATEDIFF(SECOND, StartTime, SYSUTCDATETIME())\nWHERE ParentRunID = ''',\npipeline().RunId,\n'''\nAND PipelineConfigID = ',\nstring(item().PipelineConfigID),\n'\nAND RunStatus = ''Running'';'\n)",
+                      "type": "Expression"
+                    },
+                    "type": "NonQuery"
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              },
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "log_pipeline_success",
+              "dependsOn": [
+                {
+                  "activity": "invoke_child_pipeline",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Script",
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "text": {
+                      "value": "@concat(\n'UPDATE dbo.PipelineRunLog\nSET RunStatus = ''Failed'',\n    EndTime = SYSUTCDATETIME(),\n    DurationSeconds = DATEDIFF(SECOND, StartTime, SYSUTCDATETIME()),\n    ErrorMessage = ''',\nreplace(\n    string(activity('invoke_child_pipeline').error.message),\n    '''',\n    ''''''\n),\n'''\nWHERE ParentRunID = ''',\npipeline().RunId,\n'''\nAND PipelineConfigID = ',\nstring(item().PipelineConfigID),\n'\nAND RunStatus = ''Running'';'\n)",
+                      "type": "Expression"
+                    },
+                    "type": "NonQuery"
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              },
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "log_pipeline_failure",
+              "dependsOn": [
+                {
+                  "activity": "invoke_child_pipeline",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Fail",
+              "typeProperties": {
+                "message": {
+                  "value": "@concat(     'Child pipeline ',     item().ChildPipelineName,     ' failed. Check dbo.PipelineRunLog. Parent run ID: ',     pipeline().RunId )",
+                  "type": "Expression"
+                },
+                "errorCode": "CHILD_PIPELINE_FAILED"
+              },
+              "name": "fail_orchestration_after_child_failure",
+              "dependsOn": [
+                {
+                  "activity": "log_pipeline_failure",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "foreach_active_pipeline",
+        "dependsOn": [
+          {
+            "activity": "lookup_active_pipelines",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "@concat(\n    'The Irish Housing Analytics Platform completed successfully.',\n    '<br><br>',\n    'Pipeline: ', pipeline().Pipeline,\n    '<br>',\n    'Run ID: ', pipeline().RunId,\n    '<br>',\n    'Completed at UTC: ', utcNow()\n)",
+          "to": "pipeline-notifications@example.com",
+          "subject": {
+            "value": "@concat(\n    'SUCCESS - Irish Housing Pipeline - ',\n    formatDateTime(utcNow(),'yyyy-MM-dd')\n)",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "6e55b8d2-5d0e-494a-b7b9-3a29888e2a8c"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "send_pipeline_success_email",
+        "dependsOn": [
+          {
+            "activity": "foreach_active_pipeline",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 1
+        },
+        "name": "handle_success_email_failure",
+        "dependsOn": [
+          {
+            "activity": "send_pipeline_success_email",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

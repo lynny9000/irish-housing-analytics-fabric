@@ -1,0 +1,44 @@
+table dim_decision_type
+	lineageTag: 092567e1-96bb-4eef-9183-9b88056f88ee
+	sourceLineageTag: [dbo].[dim_decision_type]
+
+	column DecisionTypeKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 08bd5d38-530a-4dac-9ec1-25ad55984fca
+		sourceLineageTag: DecisionTypeKey
+		summarizeBy: none
+		sourceColumn: DecisionTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DecisionTypeName
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: 6f556ca2-0af7-4c31-b0ce-304fab84d8d2
+		sourceLineageTag: DecisionTypeName
+		summarizeBy: none
+		sourceColumn: DecisionTypeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DecisionOutcome
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 1c692456-20ba-43e0-9dd6-a005bc1d0d8f
+		sourceLineageTag: DecisionOutcome
+		summarizeBy: none
+		sourceColumn: DecisionOutcome
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_decision_type = entity
+		mode: directLake
+		source
+			entityName: dim_decision_type
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

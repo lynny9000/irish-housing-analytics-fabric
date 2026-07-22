@@ -1,0 +1,139 @@
+table PipelineRunLog
+	lineageTag: 9847f019-0d2b-41dc-a35f-cb7e2c3b08bd
+	sourceLineageTag: [dbo].[PipelineRunLog]
+
+	column LogID
+		dataType: string
+		sourceProviderType: varchar(36)
+		lineageTag: 95e46ff6-3ce6-43eb-a0a5-e97b984906b4
+		sourceLineageTag: LogID
+		summarizeBy: none
+		sourceColumn: LogID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentRunID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: e5ae545f-e6dc-4552-b654-4380307c29ab
+		sourceLineageTag: ParentRunID
+		summarizeBy: none
+		sourceColumn: ParentRunID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PipelineConfigID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 60232702-6d83-41b6-a867-4dab9bcbef5b
+		sourceLineageTag: PipelineConfigID
+		summarizeBy: count
+		sourceColumn: PipelineConfigID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DatasetName
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: e993a53c-c7cb-448c-acc3-510194267a1a
+		sourceLineageTag: DatasetName
+		summarizeBy: none
+		sourceColumn: DatasetName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChildPipelineName
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: 992ed6ba-d7aa-4024-b030-f2171e0acf6d
+		sourceLineageTag: ChildPipelineName
+		summarizeBy: none
+		sourceColumn: ChildPipelineName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExecutionOrder
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 67bc875c-4e69-4de4-9582-5089b9ad0b56
+		sourceLineageTag: ExecutionOrder
+		summarizeBy: sum
+		sourceColumn: ExecutionOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column RunStatus
+		dataType: string
+		sourceProviderType: varchar(30)
+		lineageTag: d7a3903b-5e52-4b03-80b2-557dc4156e46
+		sourceLineageTag: RunStatus
+		summarizeBy: none
+		sourceColumn: RunStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f28b8b9f-bfe8-423e-baa9-81160aa063a7
+		sourceLineageTag: StartTime
+		summarizeBy: none
+		sourceColumn: StartTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 1c37f2d2-615a-4520-bb92-9307b7cc910f
+		sourceLineageTag: EndTime
+		summarizeBy: none
+		sourceColumn: EndTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationSeconds
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 59f5867d-933e-4f99-9f9e-365d6f0c61e0
+		sourceLineageTag: DurationSeconds
+		summarizeBy: sum
+		sourceColumn: DurationSeconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 58ed837c-b0b8-41d4-b908-10796121803c
+		sourceLineageTag: LoadDate
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorMessage
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f6b1a1b7-ddda-4ec9-b6e4-a3d37101fdb1
+		sourceLineageTag: ErrorMessage
+		summarizeBy: none
+		sourceColumn: ErrorMessage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PipelineRunLog = entity
+		mode: directLake
+		source
+			entityName: PipelineRunLog
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

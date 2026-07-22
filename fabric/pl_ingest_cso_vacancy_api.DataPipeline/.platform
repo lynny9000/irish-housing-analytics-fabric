@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "pl_ingest_cso_vacancy_api"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1e7d2eba-a97b-9e86-4b0b-df1e998c0bae"
+  }
+}

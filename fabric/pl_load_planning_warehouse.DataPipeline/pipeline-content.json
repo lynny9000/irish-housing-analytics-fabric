@@ -1,0 +1,1130 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_dim_date"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.dim_date;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "dim_date"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "DateKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "DateKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "FullDate",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "FullDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "Year",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "Year",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "Quarter",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "Quarter",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "Month",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "Month",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "MonthName",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "MonthName",
+                  "physicalType": "varchar",
+                  "length": "20"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_dim_date",
+        "dependsOn": []
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_dim_planning_authority"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.dim_planning_authority;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "dim_planning_authority"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "PlanningAuthorityKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "PlanningAuthorityKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "PlanningAuthorityName",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "PlanningAuthorityName",
+                  "physicalType": "varchar",
+                  "length": "200"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_dim_planning_authority",
+        "dependsOn": [
+          {
+            "activity": "copy_dim_date",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_dim_application_type"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.dim_application_type;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "dim_application_type"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "ApplicationTypeKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "ApplicationTypeKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationTypeName",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "ApplicationTypeName",
+                  "physicalType": "varchar",
+                  "length": "200"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_dim_application_type",
+        "dependsOn": [
+          {
+            "activity": "copy_dim_planning_authority",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_dim_application_status"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.dim_application_status;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "dim_application_status"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "ApplicationStatusKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "ApplicationStatusKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationStatusName",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "ApplicationStatusName",
+                  "physicalType": "varchar",
+                  "length": "200"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_dim_application_status",
+        "dependsOn": [
+          {
+            "activity": "copy_dim_application_type",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_dim_decision_type"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.dim_decision_type;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "dim_decision_type"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "DecisionTypeKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "DecisionTypeKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "DecisionTypeName",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "DecisionTypeName",
+                  "physicalType": "varchar",
+                  "length": "200"
+                }
+              },
+              {
+                "source": {
+                  "name": "DecisionOutcome",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "DecisionOutcome",
+                  "physicalType": "varchar",
+                  "length": "50"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_dim_decision_type",
+        "dependsOn": [
+          {
+            "activity": "copy_dim_application_status",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_dim_land_use_type"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.dim_land_use_type;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "dim_land_use_type"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "LandUseTypeKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "LandUseTypeKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "LandUseTypeName",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "LandUseTypeName",
+                  "physicalType": "varchar",
+                  "length": "200"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_dim_land_use_type",
+        "dependsOn": [
+          {
+            "activity": "copy_dim_decision_type",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "stg_fact_planning_applications"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "preCopyScript": "TRUNCATE TABLE dbo.fact_planning_applications;",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "writeBehavior": "Insert",
+            "disableMetricsCollection": false,
+            "datasetSettings": {
+              "type": "DataWarehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "fact_planning_applications"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "wh-irish-housing-dev",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "9445482f-c0c5-bfab-49f2-fce375e717dc",
+                    "endpoint": "el6tq63s7p2uzer2agcq67g7ye-dgbynybn277uta5vijssgvsoza.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "PlanningApplicationKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "PlanningApplicationKey",
+                  "physicalType": "bigint"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationNumber",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "ApplicationNumber",
+                  "physicalType": "varchar",
+                  "length": "100"
+                }
+              },
+              {
+                "source": {
+                  "name": "PlanningAuthorityKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "PlanningAuthorityKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationTypeKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "ApplicationTypeKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationStatusKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "ApplicationStatusKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "DecisionTypeKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "DecisionTypeKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "LandUseTypeKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "LandUseTypeKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "DateKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "DateKey",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "ReceivedDate",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "ReceivedDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "DecisionDate",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "DecisionDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "GrantDate",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "GrantDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "ExpiryDate",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "ExpiryDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationCount",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "ApplicationCount",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "DecisionRecorded",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "DecisionRecorded",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "OneOffHouseFlag",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "OneOffHouseFlag",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "NumResidentialUnits",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                },
+                "sink": {
+                  "name": "NumResidentialUnits",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "AreaOfSite",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 4,
+                  "precision": 18
+                },
+                "sink": {
+                  "name": "AreaOfSite",
+                  "physicalType": "decimal",
+                  "scale": 4,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "FloorArea",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                },
+                "sink": {
+                  "name": "FloorArea",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "Latitude",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 6,
+                  "precision": 9
+                },
+                "sink": {
+                  "name": "Latitude",
+                  "physicalType": "decimal",
+                  "scale": 6,
+                  "precision": 9
+                }
+              },
+              {
+                "source": {
+                  "name": "Longitude",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 6,
+                  "precision": 9
+                },
+                "sink": {
+                  "name": "Longitude",
+                  "physicalType": "decimal",
+                  "scale": 6,
+                  "precision": 9
+                }
+              },
+              {
+                "source": {
+                  "name": "ITMEasting",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "ITMEasting",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "ITMNorthing",
+                  "type": "Double",
+                  "physicalType": "double"
+                },
+                "sink": {
+                  "name": "ITMNorthing",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "DevelopmentDescription",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "DevelopmentDescription",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "DevelopmentAddress",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "DevelopmentAddress",
+                  "physicalType": "varchar",
+                  "length": "2000"
+                }
+              },
+              {
+                "source": {
+                  "name": "DevelopmentPostcode",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "DevelopmentPostcode",
+                  "physicalType": "varchar",
+                  "length": "100"
+                }
+              },
+              {
+                "source": {
+                  "name": "ApplicationDetailsURL",
+                  "type": "String",
+                  "physicalType": "string"
+                },
+                "sink": {
+                  "name": "ApplicationDetailsURL",
+                  "physicalType": "varchar",
+                  "length": "2000"
+                }
+              },
+              {
+                "source": {
+                  "name": "SourceETLDate",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "SourceETLDate",
+                  "physicalType": "datetime2",
+                  "precision": 6
+                }
+              },
+              {
+                "source": {
+                  "name": "LoadDate",
+                  "type": "Date",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "LoadDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "GoldLoadTimestamp",
+                  "type": "DateTime",
+                  "physicalType": "timestamp"
+                },
+                "sink": {
+                  "name": "GoldLoadTimestamp",
+                  "physicalType": "datetime2",
+                  "precision": 6
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_fact_planning_applications",
+        "dependsOn": [
+          {
+            "activity": "copy_dim_land_use_type",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

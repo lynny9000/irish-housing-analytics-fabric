@@ -1,0 +1,161 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "RestSource",
+            "requestMethod": "GET",
+            "httpRequestTimeout": "00:01:40",
+            "requestInterval": "00.00:00:00.010",
+            "datasetSettings": {
+              "type": "RestResource",
+              "typeProperties": {
+                "relativeUrl": "public/api.restful/PxStat.Data.Cube_API.ReadDataset/VAC14/JSON-stat/2.0/en"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "5f28899a-7948-42a5-a8d8-35fb15172a07"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "JsonSink",
+            "formatSettings": {
+              "type": "JsonWriteSettings"
+            },
+            "storeSettings": {
+              "type": "AzureBlobStorageWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Json",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "Bronze/CSO/VAC14/Raw/load_date=@{formatDateTime(utcNow(),'yyyy-MM-dd')}",
+                    "type": "Expression"
+                  },
+                  "fileName": "VAC14.json"
+                }
+              },
+              "schema": {},
+              "linkedService": {
+                "name": "lhirishhousingdev",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "23f48047-7af6-a9df-4a19-08514a3c4a73",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "copy_cso_vacancy_json_to_bronze",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "d5ec6f85-285f-a8f1-4b48-cc99551cc95a",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "load_date": {
+              "value": {
+                "value": "@formatDateTime(utcNow(),'yyyy-MM-dd')",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "externalReferences": {
+          "connection": "7cc48038-a61e-4269-baf1-b5491ebd41f7"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "run_nb_cso_vacancy_bronze_to_silver",
+        "dependsOn": [
+          {
+            "activity": "copy_cso_vacancy_json_to_bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "8c48cede-b6d3-8cd0-4917-6fd26736dfc6",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "externalReferences": {
+          "connection": "7cc48038-a61e-4269-baf1-b5491ebd41f7"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "run_nb_cso_vacancy_silver_to_gold",
+        "dependsOn": [
+          {
+            "activity": "run_nb_cso_vacancy_bronze_to_silver",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "80b9423d-c35d-87e2-4944-5822448db207",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "externalReferences": {
+          "connection": "7cc48038-a61e-4269-baf1-b5491ebd41f7"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "run_nb_cso_vacancy_gold_to_warehouse",
+        "dependsOn": [
+          {
+            "activity": "run_nb_cso_vacancy_silver_to_gold",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

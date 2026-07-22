@@ -1,0 +1,38 @@
+table dim_sale_type
+	lineageTag: 832c17f1-bd7b-4271-babe-cdb9c0ebe791
+	sourceLineageTag: [dbo].[dim_sale_type]
+
+	column SaleTypeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 72adab91-0def-427f-aa2f-cce4c14170e7
+		sourceLineageTag: SaleTypeKey
+		summarizeBy: none
+		sourceColumn: SaleTypeKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleType
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(100)
+		lineageTag: ea3b164c-9e61-4683-a0a5-87cc653ca70a
+		sourceLineageTag: SaleType
+		summarizeBy: none
+		sourceColumn: SaleType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_sale_type = entity
+		mode: directLake
+		source
+			entityName: dim_sale_type
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

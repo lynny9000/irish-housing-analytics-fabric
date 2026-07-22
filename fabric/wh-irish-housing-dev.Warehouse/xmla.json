@@ -1,0 +1,2227 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1606,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "IngestionWatermark",
+        "sourceLineageTag": "[dbo].[IngestionWatermark]",
+        "columns": [
+          {
+            "name": "WatermarkConfigID",
+            "dataType": "int64",
+            "sourceColumn": "WatermarkConfigID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "WatermarkConfigID",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DatasetName",
+            "dataType": "string",
+            "sourceColumn": "DatasetName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DatasetName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SourceTable",
+            "dataType": "string",
+            "sourceColumn": "SourceTable",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "SourceTable",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "WatermarkColumn",
+            "dataType": "string",
+            "sourceColumn": "WatermarkColumn",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "WatermarkColumn",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LastWatermarkValue",
+            "dataType": "dateTime",
+            "sourceColumn": "LastWatermarkValue",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "LastWatermarkValue",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "IsActive",
+            "dataType": "boolean",
+            "sourceColumn": "IsActive",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "bit",
+            "sourceLineageTag": "IsActive",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "UpdatedAt",
+            "dataType": "dateTime",
+            "sourceColumn": "UpdatedAt",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "UpdatedAt",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "IngestionWatermark",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "PipelineConfig",
+        "sourceLineageTag": "[dbo].[PipelineConfig]",
+        "columns": [
+          {
+            "name": "PipelineConfigID",
+            "dataType": "int64",
+            "sourceColumn": "PipelineConfigID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "PipelineConfigID",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DatasetName",
+            "dataType": "string",
+            "sourceColumn": "DatasetName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DatasetName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ChildPipelineName",
+            "dataType": "string",
+            "sourceColumn": "ChildPipelineName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ChildPipelineName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ExecutionOrder",
+            "dataType": "int64",
+            "sourceColumn": "ExecutionOrder",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ExecutionOrder",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "IsActive",
+            "dataType": "boolean",
+            "sourceColumn": "IsActive",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "bit",
+            "sourceLineageTag": "IsActive",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ChildPipelineID",
+            "dataType": "string",
+            "sourceColumn": "ChildPipelineID",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ChildPipelineID",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "PipelineConfig",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "PipelineRunLog",
+        "sourceLineageTag": "[dbo].[PipelineRunLog]",
+        "columns": [
+          {
+            "name": "LogID",
+            "dataType": "string",
+            "sourceColumn": "LogID",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "LogID",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ParentRunID",
+            "dataType": "string",
+            "sourceColumn": "ParentRunID",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ParentRunID",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "PipelineConfigID",
+            "dataType": "int64",
+            "sourceColumn": "PipelineConfigID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "PipelineConfigID",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DatasetName",
+            "dataType": "string",
+            "sourceColumn": "DatasetName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DatasetName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ChildPipelineName",
+            "dataType": "string",
+            "sourceColumn": "ChildPipelineName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ChildPipelineName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ExecutionOrder",
+            "dataType": "int64",
+            "sourceColumn": "ExecutionOrder",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ExecutionOrder",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "RunStatus",
+            "dataType": "string",
+            "sourceColumn": "RunStatus",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "RunStatus",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "StartTime",
+            "dataType": "dateTime",
+            "sourceColumn": "StartTime",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "StartTime",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "EndTime",
+            "dataType": "dateTime",
+            "sourceColumn": "EndTime",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "EndTime",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DurationSeconds",
+            "dataType": "int64",
+            "sourceColumn": "DurationSeconds",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DurationSeconds",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LoadDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LoadDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "LoadDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ErrorMessage",
+            "dataType": "string",
+            "sourceColumn": "ErrorMessage",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ErrorMessage",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "PipelineRunLog",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_application_status",
+        "sourceLineageTag": "[dbo].[dim_application_status]",
+        "columns": [
+          {
+            "name": "ApplicationStatusKey",
+            "dataType": "int64",
+            "sourceColumn": "ApplicationStatusKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ApplicationStatusKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ApplicationStatusName",
+            "dataType": "string",
+            "sourceColumn": "ApplicationStatusName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ApplicationStatusName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_application_status",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_application_type",
+        "sourceLineageTag": "[dbo].[dim_application_type]",
+        "columns": [
+          {
+            "name": "ApplicationTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "ApplicationTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ApplicationTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ApplicationTypeName",
+            "dataType": "string",
+            "sourceColumn": "ApplicationTypeName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ApplicationTypeName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_application_type",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_county",
+        "sourceLineageTag": "[dbo].[dim_county]",
+        "columns": [
+          {
+            "name": "CountyKey",
+            "dataType": "int64",
+            "sourceColumn": "CountyKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "CountyKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "CountyName",
+            "dataType": "string",
+            "sourceColumn": "CountyName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "CountyName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_county",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_date",
+        "sourceLineageTag": "[dbo].[dim_date]",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DateKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "FullDate",
+            "dataType": "dateTime",
+            "sourceColumn": "FullDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "FullDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "Year",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Quarter",
+            "dataType": "int64",
+            "sourceColumn": "Quarter",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "Quarter",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Month",
+            "dataType": "int64",
+            "sourceColumn": "Month",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "Month",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "MonthName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_date",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_decision_type",
+        "sourceLineageTag": "[dbo].[dim_decision_type]",
+        "columns": [
+          {
+            "name": "DecisionTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "DecisionTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DecisionTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DecisionTypeName",
+            "dataType": "string",
+            "sourceColumn": "DecisionTypeName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DecisionTypeName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DecisionOutcome",
+            "dataType": "string",
+            "sourceColumn": "DecisionOutcome",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DecisionOutcome",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_decision_type",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_land_use_type",
+        "sourceLineageTag": "[dbo].[dim_land_use_type]",
+        "columns": [
+          {
+            "name": "LandUseTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "LandUseTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "LandUseTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LandUseTypeName",
+            "dataType": "string",
+            "sourceColumn": "LandUseTypeName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "LandUseTypeName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_land_use_type",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_planning_authority",
+        "sourceLineageTag": "[dbo].[dim_planning_authority]",
+        "columns": [
+          {
+            "name": "PlanningAuthorityKey",
+            "dataType": "int64",
+            "sourceColumn": "PlanningAuthorityKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "PlanningAuthorityKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "PlanningAuthorityName",
+            "dataType": "string",
+            "sourceColumn": "PlanningAuthorityName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "PlanningAuthorityName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_planning_authority",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_property_type",
+        "sourceLineageTag": "[dbo].[dim_property_type]",
+        "columns": [
+          {
+            "name": "PropertyTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "PropertyTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "PropertyTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "PropertyType",
+            "dataType": "string",
+            "sourceColumn": "PropertyType",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "PropertyType",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_property_type",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_quarter",
+        "sourceLineageTag": "[dbo].[dim_quarter]",
+        "columns": [
+          {
+            "name": "QuarterKey",
+            "dataType": "int64",
+            "sourceColumn": "QuarterKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "QuarterKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Quarter",
+            "dataType": "string",
+            "sourceColumn": "Quarter",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Quarter",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "QuarterStartDate",
+            "dataType": "dateTime",
+            "sourceColumn": "QuarterStartDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "QuarterStartDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "Year",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "QuarterNumber",
+            "dataType": "int64",
+            "sourceColumn": "QuarterNumber",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "QuarterNumber",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_quarter",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_sale_type",
+        "sourceLineageTag": "[dbo].[dim_sale_type]",
+        "columns": [
+          {
+            "name": "SaleTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "SaleTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "SaleTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SaleType",
+            "dataType": "string",
+            "sourceColumn": "SaleType",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "SaleType",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_sale_type",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "fact_housing_vacancy",
+        "sourceLineageTag": "[dbo].[fact_housing_vacancy]",
+        "columns": [
+          {
+            "name": "HousingVacancyKey",
+            "dataType": "int64",
+            "sourceColumn": "HousingVacancyKey",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "HousingVacancyKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "QuarterKey",
+            "dataType": "int64",
+            "sourceColumn": "QuarterKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "QuarterKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "CountyKey",
+            "dataType": "int64",
+            "sourceColumn": "CountyKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "CountyKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "VacantDwellings",
+            "dataType": "int64",
+            "sourceColumn": "VacantDwellings",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "VacantDwellings",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DwellingStock",
+            "dataType": "int64",
+            "sourceColumn": "DwellingStock",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "DwellingStock",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "VacancyRate",
+            "dataType": "decimal",
+            "sourceColumn": "VacancyRate",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "VacancyRate",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SourceUpdatedTimestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "SourceUpdatedTimestamp",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "SourceUpdatedTimestamp",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LoadDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LoadDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "LoadDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LoadTimestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "LoadTimestamp",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "LoadTimestamp",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "fact_housing_vacancy",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "fact_market_metrics",
+        "sourceLineageTag": "[dbo].[fact_market_metrics]",
+        "columns": [
+          {
+            "name": "MarketMetricKey",
+            "dataType": "int64",
+            "sourceColumn": "MarketMetricKey",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "MarketMetricKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DateKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "CountyKey",
+            "dataType": "int64",
+            "sourceColumn": "CountyKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "CountyKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SalesCount",
+            "dataType": "int64",
+            "sourceColumn": "SalesCount",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "SalesCount",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "AverageSalePrice",
+            "dataType": "double",
+            "sourceColumn": "AverageSalePrice",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "AverageSalePrice",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "MinimumSalePrice",
+            "dataType": "double",
+            "sourceColumn": "MinimumSalePrice",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "MinimumSalePrice",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "MaximumSalePrice",
+            "dataType": "double",
+            "sourceColumn": "MaximumSalePrice",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "MaximumSalePrice",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "fact_market_metrics",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "fact_planning_applications",
+        "sourceLineageTag": "[dbo].[fact_planning_applications]",
+        "columns": [
+          {
+            "name": "PlanningApplicationKey",
+            "dataType": "int64",
+            "sourceColumn": "PlanningApplicationKey",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "PlanningApplicationKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ApplicationNumber",
+            "dataType": "string",
+            "sourceColumn": "ApplicationNumber",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ApplicationNumber",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "PlanningAuthorityKey",
+            "dataType": "int64",
+            "sourceColumn": "PlanningAuthorityKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "PlanningAuthorityKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ApplicationTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "ApplicationTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ApplicationTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ApplicationStatusKey",
+            "dataType": "int64",
+            "sourceColumn": "ApplicationStatusKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ApplicationStatusKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DecisionTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "DecisionTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DecisionTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LandUseTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "LandUseTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "LandUseTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DateKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ReceivedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ReceivedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "ReceivedDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DecisionDate",
+            "dataType": "dateTime",
+            "sourceColumn": "DecisionDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "DecisionDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "GrantDate",
+            "dataType": "dateTime",
+            "sourceColumn": "GrantDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "GrantDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ExpiryDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ExpiryDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "ExpiryDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ApplicationCount",
+            "dataType": "int64",
+            "sourceColumn": "ApplicationCount",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ApplicationCount",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DecisionRecorded",
+            "dataType": "int64",
+            "sourceColumn": "DecisionRecorded",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DecisionRecorded",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OneOffHouseFlag",
+            "dataType": "int64",
+            "sourceColumn": "OneOffHouseFlag",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "OneOffHouseFlag",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "NumResidentialUnits",
+            "dataType": "int64",
+            "sourceColumn": "NumResidentialUnits",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "NumResidentialUnits",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "AreaOfSite",
+            "dataType": "decimal",
+            "sourceColumn": "AreaOfSite",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "AreaOfSite",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "FloorArea",
+            "dataType": "double",
+            "sourceColumn": "FloorArea",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "FloorArea",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "Latitude",
+            "dataType": "double",
+            "sourceColumn": "Latitude",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "Latitude",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "Longitude",
+            "dataType": "double",
+            "sourceColumn": "Longitude",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "Longitude",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "ITMEasting",
+            "dataType": "double",
+            "sourceColumn": "ITMEasting",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "ITMEasting",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "ITMNorthing",
+            "dataType": "double",
+            "sourceColumn": "ITMNorthing",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "ITMNorthing",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "DevelopmentDescription",
+            "dataType": "string",
+            "sourceColumn": "DevelopmentDescription",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DevelopmentDescription",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DevelopmentAddress",
+            "dataType": "string",
+            "sourceColumn": "DevelopmentAddress",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DevelopmentAddress",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DevelopmentPostcode",
+            "dataType": "string",
+            "sourceColumn": "DevelopmentPostcode",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DevelopmentPostcode",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ApplicationDetailsURL",
+            "dataType": "string",
+            "sourceColumn": "ApplicationDetailsURL",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ApplicationDetailsURL",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SourceETLDate",
+            "dataType": "dateTime",
+            "sourceColumn": "SourceETLDate",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "SourceETLDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LoadDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LoadDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "LoadDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "GoldLoadTimestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "GoldLoadTimestamp",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "GoldLoadTimestamp",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "fact_planning_applications",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "fact_property_sales",
+        "sourceLineageTag": "[dbo].[fact_property_sales]",
+        "columns": [
+          {
+            "name": "PropertySaleKey",
+            "dataType": "int64",
+            "sourceColumn": "PropertySaleKey",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "PropertySaleKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DateKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "CountyKey",
+            "dataType": "int64",
+            "sourceColumn": "CountyKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "CountyKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "PropertyTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "PropertyTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "PropertyTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SaleTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "SaleTypeKey",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "SaleTypeKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SalePrice",
+            "dataType": "double",
+            "sourceColumn": "SalePrice",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "SalePrice",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "LoadTimestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "LoadTimestamp",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "LoadTimestamp",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Address",
+            "dataType": "string",
+            "sourceColumn": "Address",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Address",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Eircode",
+            "dataType": "string",
+            "sourceColumn": "Eircode",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Eircode",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "IsFullMarketPrice",
+            "dataType": "string",
+            "sourceColumn": "IsFullMarketPrice",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "IsFullMarketPrice",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "fact_property_sales",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "vw_pipeline_run_summary",
+        "sourceLineageTag": "[dbo].[vw_pipeline_run_summary]",
+        "columns": [
+          {
+            "name": "ParentRunID",
+            "dataType": "string",
+            "sourceColumn": "ParentRunID",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ParentRunID",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "RunStartTime",
+            "dataType": "dateTime",
+            "sourceColumn": "RunStartTime",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "RunStartTime",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "RunEndTime",
+            "dataType": "dateTime",
+            "sourceColumn": "RunEndTime",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "RunEndTime",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TotalDurationSeconds",
+            "dataType": "int64",
+            "sourceColumn": "TotalDurationSeconds",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "TotalDurationSeconds",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TotalDurationMinutes",
+            "dataType": "decimal",
+            "sourceColumn": "TotalDurationMinutes",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "TotalDurationMinutes",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ChildPipelineCount",
+            "dataType": "int64",
+            "sourceColumn": "ChildPipelineCount",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ChildPipelineCount",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SuccessfulChildCount",
+            "dataType": "int64",
+            "sourceColumn": "SuccessfulChildCount",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "SuccessfulChildCount",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "FailedChildCount",
+            "dataType": "int64",
+            "sourceColumn": "FailedChildCount",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "FailedChildCount",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OverallRunStatus",
+            "dataType": "string",
+            "sourceColumn": "OverallRunStatus",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "OverallRunStatus",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LoadDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LoadDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "LoadDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "vw_pipeline_run_summary",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}

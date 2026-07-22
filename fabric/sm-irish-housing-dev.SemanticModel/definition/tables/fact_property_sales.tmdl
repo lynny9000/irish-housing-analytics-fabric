@@ -1,0 +1,135 @@
+table fact_property_sales
+	lineageTag: a28361bd-dd0a-4f1a-a9f4-fc37c722aedf
+	sourceLineageTag: [dbo].[fact_property_sales]
+
+	column PropertySaleKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 48ee3086-a64f-47b7-b673-5aa37227501f
+		sourceLineageTag: PropertySaleKey
+		summarizeBy: count
+		sourceColumn: PropertySaleKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 49be1ebb-6717-4577-bc47-74b62314d8f4
+		sourceLineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5fe02cdf-c03b-46f4-b5d5-5060c08cf443
+		sourceLineageTag: CountyKey
+		summarizeBy: none
+		sourceColumn: CountyKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PropertyTypeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5aa54749-fbf1-4be9-93b0-cf57c2c0fa27
+		sourceLineageTag: PropertyTypeKey
+		summarizeBy: none
+		sourceColumn: PropertyTypeKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleTypeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5ef05291-0b21-44ac-bc9a-81561b4d4be4
+		sourceLineageTag: SaleTypeKey
+		summarizeBy: none
+		sourceColumn: SaleTypeKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalePrice
+		dataType: double
+		isNullable: false
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		sourceProviderType: decimal(18, 2)
+		lineageTag: 8ae18450-9034-46f0-ae82-fe3b1c36c5bc
+		sourceLineageTag: SalePrice
+		summarizeBy: sum
+		sourceColumn: SalePrice
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		sourceProviderType: varchar(500)
+		lineageTag: 53f46f8f-b8b9-46ae-bc11-85ec1629c4a6
+		sourceLineageTag: Address
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column Eircode
+		dataType: string
+		sourceProviderType: varchar(10)
+		lineageTag: de931956-1337-42d8-aa33-e4f1e004ec01
+		sourceLineageTag: Eircode
+		summarizeBy: none
+		sourceColumn: Eircode
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsFullMarketPrice
+		dataType: string
+		sourceProviderType: varchar(3)
+		lineageTag: 7ecb9e2a-7fca-4679-94fd-fb8bc2b92ede
+		sourceLineageTag: IsFullMarketPrice
+		summarizeBy: none
+		sourceColumn: IsFullMarketPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadTimestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 5ef253eb-48e2-4c42-afe7-0aad6c492691
+		sourceLineageTag: LoadTimestamp
+		summarizeBy: none
+		sourceColumn: LoadTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_property_sales = entity
+		mode: directLake
+		source
+			entityName: fact_property_sales
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

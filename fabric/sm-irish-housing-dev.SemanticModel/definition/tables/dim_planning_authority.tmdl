@@ -1,0 +1,34 @@
+table dim_planning_authority
+	lineageTag: 6ac4a2f0-4086-4ad8-ae4a-4d1bcb223358
+	sourceLineageTag: [dbo].[dim_planning_authority]
+
+	column PlanningAuthorityKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d7e9692f-4e93-4147-a9ef-6df09f31ceac
+		sourceLineageTag: PlanningAuthorityKey
+		summarizeBy: none
+		sourceColumn: PlanningAuthorityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanningAuthorityName
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: 83bc3e78-8dc1-479b-a6ef-d150686be315
+		sourceLineageTag: PlanningAuthorityName
+		summarizeBy: none
+		sourceColumn: PlanningAuthorityName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_planning_authority = entity
+		mode: directLake
+		source
+			entityName: dim_planning_authority
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

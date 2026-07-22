@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "e9a4a5e78e65d6e42ad2",
+  "position": {
+    "x": 945.57497700092,
+    "y": 313.22907083716649,
+    "z": 3000,
+    "height": 81.251149954001832,
+    "width": 286.14535418583256,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "*Grant rate is based on granted and refused applications only. Invalid, withdrawn, undecided and other outcomes are excluded"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

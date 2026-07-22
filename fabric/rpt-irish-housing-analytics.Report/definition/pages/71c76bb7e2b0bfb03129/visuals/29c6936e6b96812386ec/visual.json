@@ -1,0 +1,531 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "29c6936e6b96812386ec",
+  "position": {
+    "x": 21.195952161913524,
+    "y": 270.83716651333947,
+    "z": 5000,
+    "height": 439.22723091076358,
+    "width": 1258.8040478380865,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "StartTime"
+                }
+              },
+              "queryRef": "PipelineRunLog.StartTime",
+              "nativeQueryRef": "StartTime"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "ParentRunID"
+                }
+              },
+              "queryRef": "PipelineRunLog.ParentRunID",
+              "nativeQueryRef": "ParentRunID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "LogID"
+                }
+              },
+              "queryRef": "PipelineRunLog.LogID",
+              "nativeQueryRef": "LogID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "DatasetName"
+                }
+              },
+              "queryRef": "PipelineRunLog.DatasetName",
+              "nativeQueryRef": "DatasetName"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "ChildPipelineName"
+                }
+              },
+              "queryRef": "PipelineRunLog.ChildPipelineName",
+              "nativeQueryRef": "ChildPipelineName"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "ExecutionOrder"
+                }
+              },
+              "queryRef": "Sum(PipelineRunLog.ExecutionOrder)",
+              "nativeQueryRef": "ExecutionOrder"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "RunStatus"
+                }
+              },
+              "queryRef": "PipelineRunLog.RunStatus",
+              "nativeQueryRef": "RunStatus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "DurationSeconds"
+                }
+              },
+              "queryRef": "Sum(PipelineRunLog.DurationSeconds)",
+              "nativeQueryRef": "DurationSeconds"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "EndTime"
+                }
+              },
+              "queryRef": "PipelineRunLog.EndTime",
+              "nativeQueryRef": "EndTime"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "LoadDate"
+                }
+              },
+              "queryRef": "PipelineRunLog.LoadDate",
+              "nativeQueryRef": "LoadDate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PipelineRunLog"
+                    }
+                  },
+                  "Property": "ErrorMessage"
+                }
+              },
+              "queryRef": "PipelineRunLog.ErrorMessage",
+              "nativeQueryRef": "ErrorMessage"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "PipelineRunLog"
+                  }
+                },
+                "Property": "StartTime"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "136.17938938707533D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "PipelineRunLog.ParentRunID"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "116.80587173546698D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "PipelineRunLog.LogID"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "161.15914987237704D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "PipelineRunLog.DatasetName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "146.01011193994813D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "PipelineRunLog.ChildPipelineName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "61.96319582972505D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(PipelineRunLog.ExecutionOrder)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71.15746577938157D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(PipelineRunLog.DurationSeconds)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.09881212017424D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "PipelineRunLog.EndTime"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "125.43072402995028D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "PipelineRunLog.LoadDate"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "147.52256588347075D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "PipelineRunLog.ErrorMessage"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "87.43054038788455D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "PipelineRunLog.StartTime"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fd3ec3364e22ce183921",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "StartTime"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ad36690cad06aad21083",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "ParentRunID"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "629e1a6c63d72e4b968a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "LogID"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "faf5077b6412635e3a37",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "DatasetName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2a44b630b08b15c00c71",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "ChildPipelineName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a5f4702de0bb0db4ad80",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "ExecutionOrder"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "282f3bc74a73240dd6e0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "RunStatus"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ca971ed5407bc03e6367",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "DurationSeconds"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "762e462199cb6606c403",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "EndTime"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a90f32003daeee682504",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "LoadDate"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2a1bc9ead6a8320c9c8d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PipelineRunLog"
+              }
+            },
+            "Property": "ErrorMessage"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

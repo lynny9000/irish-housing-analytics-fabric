@@ -1,0 +1,114 @@
+table fact_housing_vacancy
+	lineageTag: 1bbb76f0-3bcb-408a-bd7a-913109c967ac
+	sourceLineageTag: [dbo].[fact_housing_vacancy]
+
+	column HousingVacancyKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: ae864226-db20-4367-9abc-ac4787a8e499
+		sourceLineageTag: HousingVacancyKey
+		summarizeBy: count
+		sourceColumn: HousingVacancyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 282fd0f1-4fe2-41e5-8686-f6e164230656
+		sourceLineageTag: QuarterKey
+		summarizeBy: none
+		sourceColumn: QuarterKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountyKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0777a1a5-5860-4ad6-8265-9a4c2b6e399c
+		sourceLineageTag: CountyKey
+		summarizeBy: none
+		sourceColumn: CountyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column VacantDwellings
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 407ca016-0f5a-4bb7-ae1b-5c0c75654b99
+		sourceLineageTag: VacantDwellings
+		summarizeBy: sum
+		sourceColumn: VacantDwellings
+
+		annotation SummarizationSetBy = Automatic
+
+	column DwellingStock
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 34b05132-c599-41e8-885b-10756bd8ff7f
+		sourceLineageTag: DwellingStock
+		summarizeBy: sum
+		sourceColumn: DwellingStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column VacancyRate
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(5, 1)
+		lineageTag: 8c6deff3-5e8d-4a09-9a68-fc27dae403ae
+		sourceLineageTag: VacancyRate
+		summarizeBy: sum
+		sourceColumn: VacancyRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column SourceUpdatedTimestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: a2564e3b-238a-4121-a6ff-298cc2661733
+		sourceLineageTag: SourceUpdatedTimestamp
+		summarizeBy: none
+		sourceColumn: SourceUpdatedTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 08913feb-95cc-47bf-b5b5-676c5a523d25
+		sourceLineageTag: LoadDate
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadTimestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 1957b949-49fe-4732-af45-a6c0eb09f78f
+		sourceLineageTag: LoadTimestamp
+		summarizeBy: none
+		sourceColumn: LoadTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_housing_vacancy = entity
+		mode: directLake
+		source
+			entityName: fact_housing_vacancy
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

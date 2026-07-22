@@ -1,0 +1,190 @@
+table measures_table
+	lineageTag: e332a999-04e0-4d6d-845e-a75d418d0da4
+
+	measure 'Total Sales' = SUM(fact_property_sales[SalePrice])
+		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
+		lineageTag: 3f47aa1e-e8ab-4468-b581-ac4224f7050f
+
+	measure 'Sales Count' = COUNTROWS(fact_property_sales)
+		formatString: 0
+		lineageTag: 7b26370a-16bd-45a5-acea-9be4b14ea27a
+
+	measure 'Average Sale Price' = AVERAGE(fact_property_sales[SalePrice])
+		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
+		lineageTag: 1e6f4566-0f94-4cc6-bca8-084b31805b61
+
+	measure 'Highest Sale Price' = MAX(fact_property_sales[SalePrice])
+		lineageTag: c08c1042-1753-4e0a-9bab-08135bc73cd0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Sale Price' = MEDIAN(fact_property_sales[SalePrice])
+		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
+		lineageTag: 33e11a4b-fefb-43ce-874d-ac56037c2c54
+
+	measure 'Lowest Sale Price' =
+			
+			MIN(fact_property_sales[SalePrice])
+		lineageTag: c013274e-ae61-496b-b01a-e1b9a25b1c0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Data Last Updated' =
+			
+			MAX ( fact_property_sales[LoadTimestamp] )
+		formatString: General Date
+		lineageTag: 10b22df1-8980-4e82-8afc-7ec98a8b9a34
+
+	measure 'Total Pipeline Runs' =
+			
+			DISTINCTCOUNT ( PipelineRunLog[ParentRunID] )
+		formatString: 0
+		lineageTag: 9d9b0a4f-441b-40f3-a686-5d32a6d95d98
+
+	measure 'Successful Child Executions' =
+			
+			CALCULATE (
+			    COUNTROWS ( PipelineRunLog ),
+			    PipelineRunLog[RunStatus] = "Succeeded"
+			)
+		formatString: 0
+		lineageTag: 37dc512e-aaa5-45cb-9e88-ecd07668a9c8
+
+	measure 'Failed Child Executions' =
+			
+			COALESCE (
+			    CALCULATE (
+			        COUNTROWS ( PipelineRunLog ),
+			        PipelineRunLog[RunStatus] = "Failed"
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: d2146a9f-3cc4-4888-a3b4-db1b48b340dc
+
+	measure 'Latest Run Duration Minutes' =
+			
+			VAR LatestRunID =
+			    MAXX (
+			        TOPN (
+			            1,
+			            ALL ( PipelineRunLog ),
+			            PipelineRunLog[StartTime], DESC
+			        ),
+			        PipelineRunLog[ParentRunID]
+			    )
+			VAR RunStart =
+			    CALCULATE (
+			        MIN ( PipelineRunLog[StartTime] ),
+			        REMOVEFILTERS ( PipelineRunLog ),
+			        PipelineRunLog[ParentRunID] = LatestRunID
+			    )
+			VAR RunEnd =
+			    CALCULATE (
+			        MAX ( PipelineRunLog[EndTime] ),
+			        REMOVEFILTERS ( PipelineRunLog ),
+			        PipelineRunLog[ParentRunID] = LatestRunID
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( RunEnd ),
+			        BLANK (),
+			        DIVIDE ( DATEDIFF ( RunStart, RunEnd, SECOND ), 60.0 )
+			    )
+		lineageTag: 7a2741ce-6e21-4759-8a2b-61b534bbe69c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Vacant Dwellings' =
+			
+			SUM(fact_housing_vacancy[VacantDwellings])
+		formatString: 0
+		lineageTag: 8f5325ba-cf4d-45f3-862e-c0a2eaeca826
+
+	measure 'Total Dwelling Stock' =
+			
+			SUM(fact_housing_vacancy[DwellingStock])
+		formatString: 0
+		lineageTag: d746bbfd-a898-4deb-8047-882cd853af0e
+
+	measure 'Vacancy Rate' =
+			
+			DIVIDE(
+			    [Total Vacant Dwellings],
+			    [Total Dwelling Stock]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 33a35708-6d2e-442e-93d2-aeb4ca191908
+
+	measure 'Total Planning Applications' =
+			
+			SUM(fact_planning_applications[ApplicationCount])
+		formatString: 0
+		lineageTag: 0d41f805-5b87-4974-a8c5-d1a29a3a465c
+
+	measure 'Granted Planning Applications' =
+			
+			CALCULATE(
+			    [Total Planning Applications],
+			    dim_decision_type[DecisionOutcome] = "Granted"
+			)
+		formatString: 0
+		lineageTag: d5440f80-864d-49ea-aa7b-b1184a2e8e56
+
+	measure 'Refused Planning Applications' =
+			
+			CALCULATE(
+			    [Total Planning Applications],
+			    dim_decision_type[DecisionOutcome] = "Refused"
+			)
+		formatString: 0
+		lineageTag: 1d1ef888-8b00-429d-b568-d42edaaa6e16
+
+	measure 'Planning Grant Rate' =
+			
+			DIVIDE(
+			    [Granted Planning Applications],
+			    [Granted Planning Applications] + [Refused Planning Applications]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7d787d96-294c-4c7a-92ac-2ec64d8f02d9
+
+	measure 'Total Residential Units' =
+			
+			SUM(fact_planning_applications[NumResidentialUnits])
+		formatString: 0
+		lineageTag: ba376e54-8fc7-464e-980a-1a5ac23082db
+
+	measure 'One-Off House Applications' =
+			
+			CALCULATE(
+			    [Total Planning Applications],
+			    fact_planning_applications[OneOffHouseFlag] = 1
+			)
+		formatString: 0
+		lineageTag: b079fe35-0983-4723-af54-3fafe625d7d0
+
+	measure 'Planning Data Last Updated' =
+			
+			MAX(fact_planning_applications[LoadDate])
+		formatString: General Date
+		lineageTag: c9964dbb-ae33-4926-835c-7045c8828495
+
+	column Value
+		isHidden
+		formatString: 0
+		lineageTag: c01ee48e-46b1-42b9-98a5-81615ca9c33d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition measures_table = calculated
+		mode: import
+		source = Row("Value", BLANK())
+
+	annotation PBI_Id = a329264d4ae1495cb2389b180886ca3f
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

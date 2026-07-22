@@ -1,0 +1,34 @@
+table dim_application_type
+	lineageTag: f727d9e4-84db-47fe-afc6-a61be67673e1
+	sourceLineageTag: [dbo].[dim_application_type]
+
+	column ApplicationTypeKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 20d323b3-8d03-481e-99a2-61c69c8bb596
+		sourceLineageTag: ApplicationTypeKey
+		summarizeBy: none
+		sourceColumn: ApplicationTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApplicationTypeName
+		dataType: string
+		sourceProviderType: varchar(200)
+		lineageTag: e3e31ef5-ead1-4ce1-99de-4431a01c0287
+		sourceLineageTag: ApplicationTypeName
+		summarizeBy: none
+		sourceColumn: ApplicationTypeName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_application_type = entity
+		mode: directLake
+		source
+			entityName: dim_application_type
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
