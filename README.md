@@ -110,4 +110,4 @@ Microsoft Fabric, Fabric Data Factory, OneLake, Lakehouse, PySpark, Delta Lake, 
 
 ![Data platform pipeline operations dashboard](docs/images/14_pipeline_operations_dashboard.jpg)
 
-Additional implementation screenshots are available in the [project evidence folder](docs/images/).
+Additional implementation screenshots are available in the [project images folder](docs/images/).
